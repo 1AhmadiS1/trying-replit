@@ -66,3 +66,4 @@ This project was an opportunity to see what Replit can handle from a defined spe
 One of the benefits that stood out was its ability to quickly produce **clean and polished UI designs**, making it possible to experiment with different interfaces without spending a large amount of time on manual frontend setup and styling.
 
 The goal was simply to understand where an AI development environment like Replit can be useful and what advantages it can provide during the development process.
+website: https://deeds-tracker--wayn59656.replit.app
