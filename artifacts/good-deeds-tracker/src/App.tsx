@@ -244,7 +244,7 @@ function Home() {
               </div>
               <div>
                 <p className="display-face text-lg font-semibold">Your first page is still open.</p>
-                <p className="mt-1 max-w-md text-sm leading-6 text-[hsl(var(--muted-foreground))]">Completed days will gather here quietly, without rankings or noise.</p>
+                <p className="mt-1 max-w-md text-sm leading-6 text-[hsl(var(--muted-foreground))]">Completed days gather here quietly — no rankings, no noise.</p>
               </div>
             </div>
           )}
