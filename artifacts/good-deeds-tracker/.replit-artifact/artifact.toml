@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Good Deeds Tracker"
+description = "An offline daily tracker for eight essential Islamic good deeds, with clear progress, streaks, and simple history stored in the browser."
+version = "1.0.0"
+id = "artifacts/good-deeds-tracker"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23934
+
+[services.development]
+run = "pnpm --filter @workspace/good-deeds-tracker run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/good-deeds-tracker", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/good-deeds-tracker/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23934"
+BASE_PATH = "/"

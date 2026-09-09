@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+  --radius-lg: 1.25rem;
+}
+
+:root {
+  --background: 38 43% 93%;
+  --foreground: 176 27% 18%;
+  --border: 36 25% 82%;
+  --input: 36 25% 82%;
+  --ring: 170 35% 35%;
+  --card: 42 50% 97%;
+  --card-foreground: 176 27% 18%;
+  --primary: 171 39% 30%;
+  --primary-foreground: 42 50% 97%;
+  --secondary: 35 36% 88%;
+  --secondary-foreground: 176 27% 18%;
+  --muted: 36 24% 87%;
+  --muted-foreground: 178 12% 44%;
+  --accent: 31 79% 63%;
+  --accent-foreground: 176 27% 18%;
+  --app-font-sans: 'DM Sans', sans-serif;
+  --app-font-serif: 'Fraunces', Georgia, serif;
+  --app-font-mono: 'DM Mono', monospace;
+  --radius: 1rem;
+  --shadow-card: 0 18px 50px rgba(61, 71, 55, 0.08);
+  --shadow-soft: 0 8px 24px rgba(61, 71, 55, 0.07);
+}
+
+.dark {
+  --background: 174 22% 14%;
+  --foreground: 41 43% 91%;
+  --border: 174 14% 27%;
+  --input: 174 14% 27%;
+  --ring: 37 69% 64%;
+  --card: 174 18% 19%;
+  --card-foreground: 41 43% 91%;
+  --primary: 39 68% 65%;
+  --primary-foreground: 174 22% 14%;
+  --secondary: 174 15% 25%;
+  --secondary-foreground: 41 43% 91%;
+  --muted: 174 15% 25%;
+  --muted-foreground: 41 17% 70%;
+  --accent: 12 66% 65%;
+  --accent-foreground: 174 22% 14%;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    min-width: 320px;
+    background: hsl(var(--background));
+  }
+
+  body {
+    min-height: 100dvh;
+    margin: 0;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--app-font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button {
+    font: inherit;
+  }
+}
+
+@layer utilities {
+  .app-shell {
+    position: relative;
+    isolation: isolate;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .app-shell::before {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: '';
+    opacity: 0.34;
+    background-image: radial-gradient(rgba(37, 62, 56, 0.12) 0.55px, transparent 0.55px);
+    background-size: 7px 7px;
+    mask-image: linear-gradient(to bottom, black, transparent 75%);
+  }
+
+  .page-wrap {
+    width: min(1160px, calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  .display-face {
+    font-family: var(--app-font-serif);
+    letter-spacing: -0.035em;
+  }
+
+  .mono-label {
+    font-family: var(--app-font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .card-surface {
+    border: 1px solid rgba(101, 113, 85, 0.16);
+    border-radius: 1.4rem;
+    background: hsl(var(--card) / 0.76);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(12px);
+  }
+
+  .stagger-in {
+    animation: stagger-in 650ms both cubic-bezier(0.2, 0.75, 0.3, 1);
+  }
+
+  .delay-1 { animation-delay: 80ms; }
+  .delay-2 { animation-delay: 150ms; }
+  .delay-3 { animation-delay: 220ms; }
+  .delay-4 { animation-delay: 290ms; }
+
+  .deed-button {
+    transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .deed-button:hover {
+    transform: translateY(-2px);
+    border-color: hsl(var(--primary) / 0.35);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .deed-button:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  .deed-button.is-complete {
+    border-color: hsl(var(--primary) / 0.28);
+    background: hsl(var(--primary) / 0.095);
+  }
+
+  .check-mark {
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), background-color 180ms ease, color 180ms ease;
+  }
+
+  .is-complete .check-mark {
+    transform: scale(1.08);
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .progress-fill {
+    transition: width 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .complete-note {
+    animation: note-in 450ms both cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes stagger-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes note-in {
+    from { opacity: 0; transform: translateY(6px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 1ms !important;
+      transition-duration: 1ms !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .page-wrap {
+      width: min(100% - 28px, 560px);
+    }
+  }
+}

@@ -1,0 +1,238 @@
+# Islamic Good Deeds Tracker
+
+## Purpose
+
+Build a small frontend-only Islamic Good Deeds Tracker as an experiment in Spec-Driven Development.
+
+The goal is to follow:
+
+**Specification → Implementation → Tests → Browser Testing**
+
+Do not add features that are not explicitly required by this specification.
+
+---
+
+## Technology
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* Browser localStorage
+* No backend
+* No API
+* No database
+* No authentication
+
+Keep the architecture simple and proportional to the project size.
+
+---
+
+## Required Deeds
+
+The application has exactly these 8 daily deeds:
+
+1. Fajr
+2. Dhuhr
+3. Asr
+4. Maghrib
+5. Isha
+6. Quran
+7. Dhikr
+8. Charity
+
+Do not add custom habits or additional deeds.
+
+---
+
+## Feature 1: Daily Good Deeds
+
+The home page displays today's 8 deeds.
+
+Each deed has:
+
+* Name
+* Checkbox
+* Completed/uncompleted state
+
+The user can check and uncheck deeds.
+
+The completion state must persist using localStorage.
+
+When the application is refreshed, today's progress must remain.
+
+A deed can only have two states:
+
+* completed
+* incomplete
+
+No goals, quantities, counters, or additional tracking.
+
+---
+
+## Feature 2: Streak
+
+Display:
+
+* Current streak
+* Best streak
+
+A day is considered **complete** only when all 8 required deeds are completed.
+
+### Current streak rules
+
+* If today is complete, today contributes to the streak.
+* Continue counting consecutive completed days backwards.
+* Stop when a previous day is incomplete or has no recorded completion.
+* If today is incomplete, calculate the streak according to the most recent consecutive completed days, but do not count today.
+
+### Best streak
+
+Best streak is the highest number of consecutive fully completed days in the stored history.
+
+Do not add charts, statistics, averages, or other metrics.
+
+---
+
+## Feature 3: History
+
+Provide a simple history view.
+
+For each previous tracked day show:
+
+* Date
+* Number of completed deeds
+* Completion percentage
+
+Completion percentage:
+
+completed deeds / 8 × 100
+
+A fully completed day therefore has 100%.
+
+History does not need advanced filtering, searching, pagination, or statistics.
+
+---
+
+## Data Persistence
+
+Use browser localStorage only.
+
+Store enough information to reconstruct:
+
+* Daily deed completion
+* Current streak
+* Best streak
+* History
+
+Do not use a backend or external database.
+
+The application must work completely offline after loading.
+
+---
+
+## Suggested Project Structure
+
+Use a simple structure similar to:
+
+src/
+├── components/
+│   ├── DeedList.tsx
+│   ├── StreakCard.tsx
+│   └── History.tsx
+│
+├── pages/
+│   └── HomePage.tsx
+│
+├── domain/
+│   └── deeds.ts
+│
+├── state/
+│   └── store.ts
+│
+├── App.tsx
+└── main.tsx
+
+The structure may be adjusted if there is a clear technical reason, but avoid unnecessary abstraction.
+
+---
+
+## Testing Requirements
+
+Write tests for the core business logic.
+
+At minimum test:
+
+1. A newly created day has 0 completed deeds.
+2. Checking a deed marks it completed.
+3. Unchecking a deed marks it incomplete.
+4. A day with all 8 deeds completed is considered complete.
+5. A day with fewer than 8 completed deeds is not complete.
+6. Current streak is calculated correctly for consecutive completed days.
+7. An incomplete day breaks the current streak.
+8. Best streak is calculated correctly.
+9. Completion percentage is calculated correctly.
+10. Data can be saved and loaded from localStorage.
+
+Prioritize testing the domain/business logic rather than testing every visual component.
+
+---
+
+## UI Requirements
+
+Create a clean, simple, mobile-friendly interface.
+
+The main screen should make today's progress immediately obvious.
+
+Include:
+
+* Today's date
+* List of 8 deeds
+* Completion progress
+* Current streak
+* Best streak
+* History section
+
+Do not create a large dashboard.
+
+Do not add unnecessary animations or decorative features.
+
+---
+
+## Explicit Non-Goals
+
+Do NOT implement:
+
+* Fasting
+* Custom habits
+* Multiple Dhikr goals
+* Quran page counting
+* Prayer times
+* Notifications
+* Statistics dashboard
+* Charts
+* Import/export
+* User accounts
+* Authentication
+* Backend
+* API
+* Database
+* AWS
+* Cloud synchronization
+* Complicated settings
+
+---
+
+## SDD Rule
+
+Treat this document as the source of truth.
+
+Before implementing a feature, verify that it is required by this specification.
+
+Do not invent additional requirements.
+
+If something is ambiguous, choose the simplest implementation that satisfies the specification and document the assumption instead of expanding the scope.
+
+First analyze the specification and propose the implementation plan and domain/data model.
+
+Do not start coding until the plan is clear.
