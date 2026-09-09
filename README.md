@@ -1,4 +1,4 @@
-# Mizan — Daily Good Deeds
+# Mizan — Daily Good Deeds | Replit AI Experiment
 
 A calm, offline daily tracker for eight Islamic good deeds. Mizan helps users check in on their daily practice, maintain streaks, and review previous days without rankings, pressure, or unnecessary metrics.
 
